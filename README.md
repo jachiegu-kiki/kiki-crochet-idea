@@ -16,7 +16,7 @@
 
 ---
 
-# 🇹🇼 中文說明
+# 中文說明
 
 > **專為完全不懂代碼的你設計**
 >
@@ -346,7 +346,7 @@ src/assets/works/
 
 ---
 
-# 🇺🇸 English Documentation
+# English Documentation
 
 > **Designed for people who don't know how to code**
 >
