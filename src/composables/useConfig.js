@@ -351,6 +351,33 @@ function processConfig(userConfig) {
         if (userConfig.content) {
             mergedConfig.content = deepMerge(mergedConfig.content, userConfig.content)
         }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // 🔗 智能回退邏輯：讓 profile 資料自動填補 content 的空缺
+        // 這樣用戶只需要填寫 profile，content 會自動有合理的預設值
+        // ═══════════════════════════════════════════════════════════════════
+
+        // 如果沒有設定 heroSubtitle，使用 profile.bio 作為回退
+        if (!userConfig.content?.heroSubtitle && mergedConfig.profile.bio) {
+            mergedConfig.content.heroSubtitle = mergedConfig.profile.bio
+        }
+
+        // 如果沒有設定 heroTitle，使用 profile.name 生成歡迎語
+        if (!userConfig.content?.heroTitle && mergedConfig.profile.name) {
+            // 根據職業配置的 copywriting 或使用預設歡迎語
+            const professionCopywriting = professionConfig?.copywriting || {}
+            if (professionCopywriting.heroTitle) {
+                mergedConfig.content.heroTitle = professionCopywriting.heroTitle
+            } else {
+                // 預設使用「歡迎來到 [名字] 的創作世界」
+                mergedConfig.content.heroTitle = `歡迎來到 ${mergedConfig.profile.name} 的創作世界`
+            }
+        }
+
+        // 如果沒有設定 aboutContent，使用 profile.bio 作為回退
+        if (!userConfig.content?.aboutContent && mergedConfig.profile.bio) {
+            mergedConfig.content.aboutContent = mergedConfig.profile.bio
+        }
     } catch (e) {
         warnings.push({
             field: 'general',

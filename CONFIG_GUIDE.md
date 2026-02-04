@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 # 🎨 網站設定完整指南
 
@@ -12,7 +12,7 @@
 
 ---
 
-# 🇹🇼 中文指南
+# 中文指南
 
 歡迎！這份指南會幫助你完全自訂你的作品集網站。
 
@@ -53,14 +53,17 @@
 
 ### 基本欄位
 
-| 欄位 | 說明 | 範例 |
-|------|------|------|
-| `name` | 你的名字或品牌名 | `"夜喵酷叮"` |
-| `role` | 你的職業/頭銜 | `"創意開發者 & 開源貢獻者"` |
-| `profession` | 職業代碼（決定網站風格）⭐ | `"designer"` |
-| `email` | 聯絡 Email | `"hello@nightcatcoding.com"` |
-| `bio` | 簡短自我介紹 | `"用代碼編織創意，讓每個專案都有貓的靈魂"` |
-| `avatar` | 頭像圖片路徑 | `"/images/avatar.jpg"` |
+| 欄位           | 說明                             | 範例                           |
+|--------------|--------------------------------|------------------------------|
+| `name`       | 你的名字或品牌名                       | `"夜喵酷叮"`                     |
+| `role`       | 你的職業/頭銜                        | `"創意開發者 & 開源貢獻者"`            |
+| `profession` | 職業代碼（決定網站風格）⭐                  | `"designer"`                 |
+| `email`      | 聯絡 Email                       | `"hello@nightcatcoding.com"` |
+| `bio`        | 簡短自我介紹 ⭐ **會自動顯示在首頁副標題和關於我頁面** | `"用代碼編織創意，讓每個專案都有貓的靈魂"`      |
+| `avatar`     | 頭像圖片路徑                         | `"/images/avatar.jpg"`       |
+
+> **💡 重要提示**：`bio` 欄位非常重要！如果你沒有設定 `content.heroSubtitle`，系統會自動將 `bio`
+> 顯示在首頁副標題位置。這樣你只需要寫一次自我介紹，網站各處都會自動使用。
 
 ### ⭐ profession 職業代碼
 
@@ -302,17 +305,33 @@
 
 自訂網站上的所有文字。
 
-| 欄位 | 出現位置 | 預設值 |
-|------|---------|--------|
-| `heroTitle` | 首頁主標題 | 根據職業自動生成 |
-| `heroSubtitle` | 首頁副標題 | 根據職業自動生成 |
-| `heroButtonText` | 首頁按鈕文字 | `"瀏覽作品"` |
-| `worksTitle` | 作品區標題 | `"我的作品"` |
-| `otherWorksTitle` | 其他作品區標題 | `"更多作品"` |
-| `footerText` | 頁尾文字 | 自動生成 |
-| `notFoundTitle` | 404 頁面標題 | 根據職業自動生成（有趣的） |
-| `notFoundMessage` | 404 頁面訊息 | 根據職業自動生成 |
-| `notFoundButtonText` | 404 頁面按鈕 | `"回到首頁"` |
+### 🪄 智能回退機制
+
+**好消息！你不需要填寫所有欄位！** 系統會智能地從你的 `profile` 資料自動填補：
+
+| 欄位             | 自動回退來源                          |
+|----------------|---------------------------------|
+| `heroTitle`    | 如果沒填 → 自動生成 `歡迎來到 [你的名字] 的創作世界` |
+| `heroSubtitle` | 如果沒填 → 自動使用 `profile.bio`（自我介紹） |
+| `aboutContent` | 如果沒填 → 自動使用 `profile.bio`（自我介紹） |
+
+> **💡 小提示**：這表示你只要在 `profile.bio` 填寫自我介紹，首頁副標題和關於我頁面都會自動顯示這段文字！
+
+### 所有欄位
+
+| 欄位                   | 出現位置     | 預設值                |
+|----------------------|----------|--------------------|
+| `heroTitle`          | 首頁主標題    | `歡迎來到 [名字] 的創作世界`  |
+| `heroSubtitle`       | 首頁副標題    | 自動使用 `profile.bio` |
+| `heroButtonText`     | 首頁按鈕文字   | `"瀏覽作品"`           |
+| `worksTitle`         | 作品區標題    | `"我的作品"`           |
+| `otherWorksTitle`    | 其他作品區標題  | `"更多作品"`           |
+| `aboutTitle`         | 關於我區標題   | `"關於我"`            |
+| `aboutContent`       | 關於我內容    | 自動使用 `profile.bio` |
+| `footerText`         | 頁尾文字     | 自動生成               |
+| `notFoundTitle`      | 404 頁面標題 | 根據職業自動生成（有趣的）      |
+| `notFoundMessage`    | 404 頁面訊息 | 根據職業自動生成           |
+| `notFoundButtonText` | 404 頁面按鈕 | `"回到首頁"`           |
 
 ### 範例
 
@@ -485,7 +504,7 @@
 
 ---
 
-# 🇺🇸 English Guide
+# English Guide
 
 Welcome! This guide will help you fully customize your portfolio website.
 
@@ -526,14 +545,18 @@ This is the **most important** section containing your basic info.
 
 ### Basic Fields
 
-| Field | Description | Example |
-|-------|-------------|---------|
-| `name` | Your name or brand name | `"Night Cat Coding"` |
-| `role` | Your profession/title | `"Creative Developer & Open Source Contributor"` |
-| `profession` | Profession code (determines website style) ⭐ | `"designer"` |
-| `email` | Contact email | `"hello@nightcatcoding.com"` |
-| `bio` | Short bio | `"Weaving creativity with code, giving every project a cat's soul"` |
-| `avatar` | Avatar image path | `"/images/avatar.jpg"` |
+| Field        | Description                                                       | Example                                                             |
+|--------------|-------------------------------------------------------------------|---------------------------------------------------------------------|
+| `name`       | Your name or brand name                                           | `"Night Cat Coding"`                                                |
+| `role`       | Your profession/title                                             | `"Creative Developer & Open Source Contributor"`                    |
+| `profession` | Profession code (determines website style) ⭐                      | `"designer"`                                                        |
+| `email`      | Contact email                                                     | `"hello@nightcatcoding.com"`                                        |
+| `bio`        | Short bio ⭐ **Auto-displays on homepage subtitle and About page** | `"Weaving creativity with code, giving every project a cat's soul"` |
+| `avatar`     | Avatar image path                                                 | `"/images/avatar.jpg"`                                              |
+
+> **💡 Important**: The `bio` field is very important! If you don't set `content.heroSubtitle`, the system will
+> automatically display your `bio` in the homepage subtitle. This way you only need to write your intro once, and the site
+> will use it everywhere.
 
 ### ⭐ Profession Codes
 
@@ -775,17 +798,34 @@ Customize which sections appear and in what order:
 
 Customize all text on your site.
 
-| Field | Location | Default |
-|-------|----------|---------|
-| `heroTitle` | Homepage main heading | Auto-generated by profession |
-| `heroSubtitle` | Homepage subtitle | Auto-generated by profession |
-| `heroButtonText` | Homepage button | `"View Works"` |
-| `worksTitle` | Works section title | `"My Works"` |
-| `otherWorksTitle` | Other works section title | `"More Works"` |
-| `footerText` | Footer text | Auto-generated |
-| `notFoundTitle` | 404 page heading | Auto-generated (fun!) |
-| `notFoundMessage` | 404 page message | Auto-generated |
-| `notFoundButtonText` | 404 page button | `"Back to Home"` |
+### 🪄 Smart Fallback System
+
+**Good news! You don't need to fill in every field!** The system intelligently fills in from your `profile` data:
+
+| Field          | Auto-Fallback Source                                                |
+|----------------|---------------------------------------------------------------------|
+| `heroTitle`    | If empty → auto-generates `Welcome to [Your Name]'s Creative World` |
+| `heroSubtitle` | If empty → uses `profile.bio` (your bio)                            |
+| `aboutContent` | If empty → uses `profile.bio` (your bio)                            |
+
+> **💡 Tip**: This means if you just fill in `profile.bio`, both the homepage subtitle and About page will automatically
+> show this text!
+
+### All Fields
+
+| Field                | Location                  | Default                              |
+|----------------------|---------------------------|--------------------------------------|
+| `heroTitle`          | Homepage main heading     | `Welcome to [Name]'s Creative World` |
+| `heroSubtitle`       | Homepage subtitle         | Auto-uses `profile.bio`              |
+| `heroButtonText`     | Homepage button           | `"View Works"`                       |
+| `worksTitle`         | Works section title       | `"My Works"`                         |
+| `otherWorksTitle`    | Other works section title | `"More Works"`                       |
+| `aboutTitle`         | About section title       | `"About Me"`                         |
+| `aboutContent`       | About section content     | Auto-uses `profile.bio`              |
+| `footerText`         | Footer text               | Auto-generated                       |
+| `notFoundTitle`      | 404 page heading          | Auto-generated (fun!)                |
+| `notFoundMessage`    | 404 page message          | Auto-generated                       |
+| `notFoundButtonText` | 404 page button           | `"Back to Home"`                     |
 
 ### Example
 
@@ -978,11 +1018,10 @@ If this template helped you, consider buying me a coffee!
 
 ## 📜 License
 
-MIT License © 2024 [夜喵酷叮 | Night Cat Coding](https://github.com/night-cat-coding)
+MIT License © 2026 [夜喵酷叮 | Night Cat Coding](https://github.com/yfp86274)
 
 Happy customizing! 🎉
 
 祝你自訂愉快！🎉
 
 </div>
-]]>

@@ -312,6 +312,49 @@
                 </div>
             </section>
 
+            <!-- 🏠 首頁內容設定 -->
+            <section class="bg-white rounded-3xl shadow-sm border border-stone-100 p-6">
+                <h3 class="text-lg font-semibold text-stone-800 mb-2 flex items-center gap-2">
+                    <span class="text-xl">🏠</span> 首頁內容
+                </h3>
+                <p class="text-sm text-stone-500 mb-4">自訂首頁顯示的文字（留空會使用智能預設值）</p>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-stone-700 mb-1.5">
+                            首頁大標題
+                            <span class="text-stone-400 font-normal">（預設：歡迎來到 [你的名字] 的創作世界）</span>
+                        </label>
+                        <input type="text" id="inputHeroTitle"
+                               placeholder="例如：用心編織，溫暖每一刻"
+                               class="input-elegant w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-400"
+                               oninput="updatePreview()">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-stone-700 mb-1.5">
+                            首頁副標題
+                            <span class="text-stone-400 font-normal">（留空會自動使用「自我介紹」）</span>
+                        </label>
+                        <input type="text" id="inputHeroSubtitle"
+                               placeholder="例如：探索手作的溫度與美好"
+                               class="input-elegant w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-400"
+                               oninput="updatePreview()">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-stone-700 mb-1.5">
+                            按鈕文字
+                            <span class="text-stone-400 font-normal">（預設：瀏覽作品）</span>
+                        </label>
+                        <input type="text" id="inputHeroButtonText"
+                               placeholder="例如：看看我的作品"
+                               class="input-elegant w-full px-4 py-3 border border-stone-200 rounded-xl focus:outline-none focus:border-amber-400"
+                               oninput="updatePreview()">
+                    </div>
+                </div>
+            </section>
+
             <!-- 🔍 SEO 設定（折疊） -->
             <section class="bg-white rounded-3xl shadow-sm border border-stone-100 overflow-hidden">
                 <button onclick="toggleSEO()"
@@ -363,19 +406,39 @@
 
                 <!-- 預覽畫面 -->
                 <div id="previewHero"
-                     class="preview-hero p-8 min-h-[280px] flex flex-col justify-center items-center text-center transition-all duration-500"
+                     class="preview-hero p-8 min-h-[320px] flex flex-col justify-center items-center text-center transition-all duration-500"
                      style="background-color: #fdf6ec;">
-                    <h2 id="previewName" class="text-3xl font-bold mb-2 transition-all duration-300"
+
+                    <!-- 首頁大標題 -->
+                    <h1 id="previewHeroTitle" class="text-2xl font-bold mb-3 transition-all duration-300"
+                        style="color: #5c4033;">
+                        歡迎來到你的創作世界
+                    </h1>
+
+                    <!-- 首頁副標題 / Bio -->
+                    <p id="previewHeroSubtitle" class="text-base mb-4 max-w-md transition-all duration-300"
+                       style="color: #8b7355;">
+                        在這裡介紹你自己...
+                    </p>
+
+                    <!-- 分隔線 -->
+                    <div class="w-16 h-px bg-current opacity-20 my-4"></div>
+
+                    <!-- 名字與頭銜 -->
+                    <h2 id="previewName" class="text-xl font-semibold mb-1 transition-all duration-300"
                         style="color: #5c4033;">
                         你的名字
                     </h2>
-                    <p id="previewRole" class="text-lg mb-4 transition-all duration-300" style="color: #8b7355;">
+                    <p id="previewRole" class="text-sm mb-4 transition-all duration-300" style="color: #8b7355;">
                         你的職業
                     </p>
-                    <div id="previewBio" class="text-sm max-w-md opacity-70 transition-all duration-300"
-                         style="color: #5c4033;">
-                        在這裡介紹你自己...
-                    </div>
+
+                    <!-- 按鈕預覽 -->
+                    <button id="previewButton"
+                            class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                            style="background-color: rgba(92, 64, 51, 0.1); color: #5c4033;">
+                        瀏覽作品
+                    </button>
 
                     <!-- 風格標籤 -->
                     <div id="previewStyleTag"
@@ -697,32 +760,51 @@
     function updatePreview() {
         const name = document.getElementById('inputName').value.trim() || '你的名字';
         const role = document.getElementById('inputRole').value.trim() || '你的職業';
-        const bio = document.getElementById('inputBio').value.trim() || '在這裡介紹你自己...';
+        const bio = document.getElementById('inputBio').value.trim();
+        const heroTitle = document.getElementById('inputHeroTitle').value.trim();
+        const heroSubtitle = document.getElementById('inputHeroSubtitle').value.trim();
+        const heroButtonText = document.getElementById('inputHeroButtonText').value.trim();
 
         const profession = professions.find(p => p.id === selectedProfession);
 
         // 更新預覽區
         const hero = document.getElementById('previewHero');
+        const previewHeroTitle = document.getElementById('previewHeroTitle');
+        const previewHeroSubtitle = document.getElementById('previewHeroSubtitle');
         const previewName = document.getElementById('previewName');
         const previewRole = document.getElementById('previewRole');
-        const previewBio = document.getElementById('previewBio');
+        const previewButton = document.getElementById('previewButton');
         const styleTag = document.getElementById('previewStyleTag');
 
         // 套用顏色
         hero.style.backgroundColor = profession.colors.bg;
+        previewHeroTitle.style.color = profession.colors.text;
+        previewHeroSubtitle.style.color = profession.colors.muted;
         previewName.style.color = profession.colors.text;
         previewRole.style.color = profession.colors.muted;
-        previewBio.style.color = profession.colors.text;
+        previewButton.style.backgroundColor = profession.colors.accent + '20';
+        previewButton.style.color = profession.colors.accent;
         styleTag.style.backgroundColor = profession.colors.accent + '20';
         styleTag.style.color = profession.colors.accent;
 
         // 套用字體類別
-        previewName.className = `text-3xl font-bold mb-2 transition-all duration-300 ${profession.fontClass}`;
+        previewHeroTitle.className = `text-2xl font-bold mb-3 transition-all duration-300 ${profession.fontClass}`;
+        previewName.className = `text-xl font-semibold mb-1 transition-all duration-300 ${profession.fontClass}`;
+
+        // 計算顯示的文字
+        // 首頁大標題：優先使用用戶輸入 > 自動生成
+        const displayHeroTitle = heroTitle || `歡迎來到 ${name} 的創作世界`;
+        // 首頁副標題：優先使用用戶輸入 > bio > 預設
+        const displayHeroSubtitle = heroSubtitle || bio || '探索我的創作世界';
+        // 按鈕文字
+        const displayButtonText = heroButtonText || '瀏覽作品';
 
         // 更新文字
+        previewHeroTitle.textContent = displayHeroTitle;
+        previewHeroSubtitle.textContent = displayHeroSubtitle;
         previewName.textContent = name;
         previewRole.textContent = role;
-        previewBio.textContent = bio;
+        previewButton.textContent = displayButtonText;
         styleTag.innerHTML = `${profession.emoji} ${profession.styleLabel}`;
 
         // 更新 JSON 輸出
@@ -743,6 +825,10 @@
         const etsy = document.getElementById('inputEtsy').value.trim();
         const pinterest = document.getElementById('inputPinterest').value.trim();
         const youtube = document.getElementById('inputYoutube').value.trim();
+
+        const heroTitle = document.getElementById('inputHeroTitle').value.trim();
+        const heroSubtitle = document.getElementById('inputHeroSubtitle').value.trim();
+        const heroButtonText = document.getElementById('inputHeroButtonText').value.trim();
 
         const siteTitle = document.getElementById('inputSiteTitle').value.trim();
         const siteDescription = document.getElementById('inputSiteDescription').value.trim();
@@ -770,6 +856,16 @@
 
         if (Object.keys(social).length > 0) {
             config.profile.social = social;
+        }
+
+        // 首頁內容（content）- 只有用戶填寫了才加入
+        const content = {};
+        if (heroTitle) content.heroTitle = heroTitle;
+        if (heroSubtitle) content.heroSubtitle = heroSubtitle;
+        if (heroButtonText) content.heroButtonText = heroButtonText;
+
+        if (Object.keys(content).length > 0) {
+            config.content = content;
         }
 
         // SEO
