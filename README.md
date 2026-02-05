@@ -58,9 +58,16 @@
 1. 確保你已經登入 GitHub 帳號
 2. 點擊本頁面右上角的 **Fork** 按鈕
 3. 等待幾秒鐘，你就擁有自己的網站倉庫了！
-4. 進入你 Fork 的倉庫 → **Settings** → **Pages**
-5. 在 **Source** 選擇 `GitHub Actions`
-6. 等待約 2 分鐘，你的網站就會上線在：`https://你的用戶名.github.io/倉庫名/`
+
+**GitHub 安全機制默認會關閉自動化功能，你需要手動開啟：**
+
+1. 進入你剛 Fork 好的倉庫，點擊上方的 **Actions** 分頁。
+2. 你會看到一個警告，請點擊綠色按鈕：
+   **"I understand my workflows, go ahead and enable them"**
+3. 接下來進入 **Settings** → **Pages**。
+4. 在 **Source** 選擇 `GitHub Actions`。
+
+> ⚠️ **注意**：此時網站**還不會**馬上上線，請繼續完成下面的步驟，當你修改並儲存設定後，網站才會開始第一次建立。
 
 ---
 
@@ -113,15 +120,25 @@
 
 ---
 
-### 步驟 4️⃣ 上傳你的作品照片
+### 步驟 4️⃣ 上傳你的照片
 
-#### 在網頁編輯器裡操作（推薦）：
+按 `.` 鍵打開網頁編輯器後，你可以拖拉上傳照片。
 
-1. 按 `.` 鍵打開網頁編輯器
-2. 在左側文件樹找到 `src` → `assets` → `works` 資料夾
-3. **右鍵點擊 `works`** → **New Folder**（新建資料夾）
-4. 命名你的作品，例如：`01_冬日圍巾`
-5. **直接把照片從電腦拖進去！**
+#### 🖼️ A. 更換首頁大圖 (Hero Image)
+
+1. 準備一張直式或橫式的照片。
+2. **將檔名改為 `hero`**（例如 `hero.jpg`, `hero.png` 或 `hero.webp`）。
+3. 在左側文件樹找到 `src` → `assets` 資料夾。
+4. 將你的 `hero.jpg` 拖進去。
+5. 如果裡面原本有範例圖片，直接覆蓋即可。
+
+#### 📂 B. 上傳作品集 (Portfolio)
+
+1. 在左側文件樹找到 `src` → `assets` → `works` 資料夾。
+   *(如果看到一個 `.gitkeep` 文件，請忽略它，那是為了確保資料夾存在用的)*
+2. **右鍵點擊 `works`** → **New Folder**（新建資料夾）。
+3. 命名你的作品，例如：`01_冬日圍巾`。
+4. **直接把該作品的照片拖進去！**
 
 #### 文件夾命名規則：
 
@@ -247,18 +264,10 @@ src/assets/works/
 
 ## ❓ 常見問題 FAQ
 
-### 🔄 網站沒有更新？
+### 🔄 Fork 之後網站沒有馬上出現？
 
-1. 確認 GitHub Actions 已完成：
-   - 進入倉庫 → **Actions** 頁面
-   - 看到綠色勾勾 ✓ 表示建置成功
-   - 看到紅色 ✗ 點進去查看錯誤訊息
-
-2. 清除瀏覽器緩存：
-   - Windows/Linux：`Ctrl + Shift + R`
-   - Mac：`Cmd + Shift + R`
-
-3. 等待 1-2 分鐘讓 GitHub Pages 更新
+這是正常的！GitHub Actions 需要一次「觸發」才會開始工作。
+當你完成 **步驟 3 (修改設定並提交)** 後，GitHub 就會檢測到變更，並開始自動幫你建立網站。請去 Actions 頁面查看進度。
 
 ### ❌ JSON 格式錯誤？
 
@@ -388,9 +397,16 @@ src/assets/works/
 1. Make sure you're logged into GitHub
 2. Click the **Fork** button at the top right of this page
 3. Wait a few seconds, and you'll have your own copy!
-4. Go to your forked repo → **Settings** → **Pages**
-5. Under **Source**, select `GitHub Actions`
-6. Wait ~2 minutes, your site will be live at: `https://yourusername.github.io/repo-name/`
+
+**GitHub disables automation by default for security. You must enable it:**
+
+1. Go to the **Actions** tab in your new repository.
+2. Click the green button: **"I understand my workflows, go ahead and enable them"**.
+3. Go to **Settings** → **Pages**.
+4. Under **Source**, select `GitHub Actions`.
+
+> ⚠️ **Note**: Your site is **not live yet**. Proceed to the next step. The first build will trigger only after you
+> modify and save the config file.
 
 ---
 
@@ -443,15 +459,24 @@ src/assets/works/
 
 ---
 
-### Step 4️⃣ Upload Your Portfolio Images
+### Step 4️⃣ Upload Your Photos
 
-#### Using the Web Editor (Recommended):
+While in the web editor (press `.`):
 
-1. Press `.` to open the web editor
-2. Navigate to `src` → `assets` → `works` folder
-3. **Right-click on `works`** → **New Folder**
-4. Name your work, e.g., `01_Night_Project`
-5. **Drag and drop your photos directly!**
+#### 🖼️ A. Change Hero Image (Main Cover)
+
+1. Prepare your best photo.
+2. **Rename it to `hero`** (e.g., `hero.jpg`, `hero.png`, or `hero.webp`).
+3. Find the `src` → `assets` folder.
+4. Drag and drop your file there.
+
+#### 📂 B. Upload Portfolio Works
+
+1. Find `src` → `assets` → `works` folder.
+   *(Ignore the `.gitkeep` file if you see one)*
+2. **Right-click `works`** → **New Folder**.
+3. Name it, e.g., `01_Winter_Scarf`.
+4. **Drag and drop project photos inside.**
 
 #### Folder Naming Rules:
 
@@ -568,18 +593,10 @@ Choose your profession, and the website auto-applies the best colors, fonts, and
 
 ## ❓ FAQ
 
-### 🔄 Website Not Updating?
+### 🔄 Site didn't appear after Forking?
 
-1. Check GitHub Actions status:
-   - Go to repo → **Actions** tab
-   - Green ✓ = build successful
-   - Red ✗ = click to see error message
-
-2. Clear browser cache:
-   - Windows/Linux: `Ctrl + Shift + R`
-   - Mac: `Cmd + Shift + R`
-
-3. Wait 1-2 minutes for GitHub Pages to update
+Normal! GitHub Actions needs a "push" event to start. Once you complete **Step 3 (Commit Config)**, the build will start
+automatically.
 
 ### ❌ JSON Format Errors?
 
